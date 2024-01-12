@@ -10,7 +10,8 @@ screen.tracer(0)
 
 player = Player()
 car_manager = CarManager()
-
+scoreboard =  Scoreboard()
+ 
 screen.listen()
 screen.onkey(player.go_up,"w")
 screen.onkey(player.go_down,"s")
@@ -33,10 +34,13 @@ while game_is_on:
     for car in car_manager.cars:
         if (car.distance(player)<25):
             game_is_on = False
+            scoreboard.game_over()
     
-    if(player.ycor()>280):
-        player.restart()
+    #Detect if player successfully crossed
+    if(player.if_at_finish_line()):
+        player.go_to_start()
         car_manager.next_stage()
+        scoreboard.increase_level()
 
 
 
