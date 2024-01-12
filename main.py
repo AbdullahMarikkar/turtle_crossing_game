@@ -13,19 +13,33 @@ car_manager = CarManager()
 
 screen.listen()
 screen.onkey(player.go_up,"w")
-screen.onkey(player.go_right,"d")
-screen.onkey(player.go_left,"a")
+screen.onkey(player.go_down,"s")
+
+
 
 
 game_is_on = True
 while game_is_on:
-    for car in car_manager.cars:
-        if (car.distance(player)<25):
-            print(car.distance(player))
-            game_is_on = False
+    
             
     time.sleep(0.1)
     screen.update()
     
     car_manager.create_car()
     car_manager.move_cars()
+    
+    
+    #Detect collision with car
+    for car in car_manager.cars:
+        if (car.distance(player)<25):
+            game_is_on = False
+    
+    if(player.ycor()>280):
+        player.restart()
+        car_manager.next_stage()
+
+
+
+
+
+screen.exitonclick()
