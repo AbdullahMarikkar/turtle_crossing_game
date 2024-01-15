@@ -3,7 +3,7 @@ import random
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
-MOVE_INCREMENT = 10
+MOVE_INCREMENT = 1
 
 
 class CarManager:
@@ -31,5 +31,10 @@ class CarManager:
             
     def next_stage(self):
         self.cars_speed += MOVE_INCREMENT
-        self.cars = []
+        self.reset_cars()
+        
+    def reset_cars(self):
+        for car in self.cars:
+            car.goto(1000,1000)   
+        self.cars.clear()    
         

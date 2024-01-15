@@ -38,9 +38,9 @@ while game_is_on:
     
     #Detect if player successfully crossed
     if(player.if_at_finish_line()):
+        scoreboard.increase_level()
         player.go_to_start()
         car_manager.next_stage()
-        scoreboard.increase_level()
 
 
 
